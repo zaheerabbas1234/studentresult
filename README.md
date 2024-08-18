@@ -43,3 +43,41 @@ Automate Execution: Developers automate the execution of test cases using build 
 Monitor Test Results: Developers monitor test results to identify failing tests, regressions, or performance issues. Failed tests should be investigated and fixed promptly to maintain code quality.
 
 By integrating Test-First Development, Refactoring, and Automatic Test Case Writing into their development workflow, teams can improve code quality, accelerate development cycles, and deliver more reliable software products.
+
+
+
+To apply Extreme Programming (XP) practices of Test-First Development (TDD), Refactoring, and Automated Testing to your example, here's a detailed approach:
+
+1. Test-First Development (TDD)
+Concept:
+
+Red-Green-Refactor Cycle:
+Red: Write tests for methods before the actual implementation.
+Green: Implement the methods to make the tests pass.
+Refactor: Clean up the code while ensuring tests remain green.
+In Your Example:
+
+You’ve already implemented tests for the add and mul methods. Since the methods are simple and already correct, you would start with writing tests for new functionalities or edge cases.
+Next Steps:
+
+If you were to add a new method, such as subtract, you’d first write a test case for it before implementing the method.
+2. Refactoring
+Concept:
+
+Improve the structure of your code without changing its functionality.
+In Your Example:
+
+Your Calculator class is simple and doesn’t require immediate refactoring. However, if the class grew in complexity, you might need to refactor for better readability or efficiency.
+Potential Refactor:
+
+For a more complex Calculator, consider separating operations into different classes or using an interface. For instance, adding more complex operations might prompt restructuring.
+3. Automated Test Case Writing
+Concept:
+
+Automated test cases verify code functionality and run automatically to ensure changes don’t break existing features.
+In Your Example:
+
+Your test cases are automated using JUnit. They will automatically check if the add and mul methods work as expected.
+Enhancements:
+
+Edge Cases: Add tests for edge cases like large numbers, negative numbers, and zero
