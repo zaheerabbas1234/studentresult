@@ -1,83 +1,81 @@
+==============================Excercise-6==================================================
+Write a build script to build the application using a build automation tool like Maven. Create a folder 
+structure that will run the build script and invoke the various software development build stages. This script 
+should invoke the static analysis tool and unit test cases and deploy the application to a web application 
+server like Tomcat
+-----------------------------------------------------------------------------------------------------
 
-experiment-2:
-----------------------------------------------------------------------------------------------
-get a working knowledge of using extreme automation through xp programming practices of test first development refactoring and automatic test case writing
+pom.xml
+Defines the Maven project, including dependencies, plugins, and configuration.
 
-----------------------------------------------------------------------------------------
+Source Code Files:
+StudentresultApplication.java: Main Spring Boot application class.
 
-Absolutely! Let's dive into Extreme Programming (XP) practices focusing on extreme automation, specifically Test-First Development, Refactoring, and Automatic Test Case Writing:
+ResultController.java: REST controller for handling result-related operations.
 
-Test-First Development (TFD):
-Test-First Development, also known as Test-Driven Development (TDD), is a practice in XP where tests are written before the actual code. Here's how it works:
+Result.java: Represents the result model class.
 
-Write a Test: Developers start by writing a test that defines the desired behavior or functionality of the code they're about to write. This test initially fails because the code isn't implemented yet.
+ResultRepo.java: Repository interface for database operations.
 
-Write the Code: Developers then write the minimum amount of code necessary to pass the test. This code might not be perfect or complete, but it should make the test pass.
+Configuration:
+application.properties: Configurations like database connection properties.
 
-Run the Test: Developers run the test suite to verify that the newly written code passes all the tests.
+Tests:
+StudentresultApplicationTests.java: Contains unit tests for the application.
 
-Refactor: Once the test passes, developers refactor the code to improve its design, readability, and performance while keeping all tests passing.
+Maven Wrapper Scripts:
+mvnw and mvnw.cmd: To build the project without requiring a global Maven installation.
 
-Repeat: Developers repeat this cycle for each new piece of functionality or code modification.
+Theoretical Points for the Build Script
+1. Folder Structure
+Standard Maven Structure
 
-Refactoring:
-Refactoring is the process of restructuring existing code without changing its external behavior. In XP, refactoring is an essential practice to maintain code quality and flexibility. Here's how it's done:
+project-root/
+├── src/
+│   ├── main/
+│   │   ├── java/ (Application Code)
+│   │   └── resources/ (Configuration Files)
+│   └── test/
+│       └── java/ (Test Code)
+├── pom.xml (Project Object Model for Maven)
+└── README.md (Project Documentation)
 
-Identify Opportunities: Developers identify areas of the codebase that could be improved through refactoring. This could include simplifying complex code, removing duplication, or improving performance.
+2. Build Automation Stages
+   
+Clean: Removes previous build artifacts.
 
-Make Small Changes: Developers make small, incremental changes to the codebase, ensuring that each change maintains or improves code readability, maintainability, and performance.
+Compile: Compiles source code into bytecode.
 
-Run Tests: After each refactoring step, developers run the test suite to ensure that the code still behaves as expected and that no regressions have been introduced.
+Test: Runs unit tests to verify functionality.
 
-Commit Frequently: Developers commit changes frequently to version control to ensure that the codebase remains stable and changes can be easily reverted if needed.
+Static Analysis: Scans code for potential issues (e.g., using tools like Checkstyle, PMD, or SpotBugs).
 
-Automatic Test Case Writing:
-Automatic test case writing, also known as automated testing, involves writing scripts or programs to automate the execution of test cases. In XP, automated testing is crucial for ensuring code quality, detecting regressions, and facilitating continuous integration. Here's how it's implemented:
+Package: Packages the application into a deployable artifact (e.g., JAR or WAR).
 
-Choose Testing Frameworks: Developers select testing frameworks and tools suitable for the programming language and technology stack being used. Common frameworks include JUnit for Java, pytest for Python, and Jasmine for JavaScript.
+Deploy: Deploys the packaged artifact to a server like Apache Tomcat.
 
-Write Test Cases: Developers write test cases that cover various aspects of the codebase, including unit tests, integration tests, and end-to-end tests. These tests should be fast, reliable, and independent of each other.
+4. Maven Build Script
+Static Analysis: Include a plugin in pom.xml for static analysis (e.g., SpotBugs or Checkstyle). Example:
+xml
 
-Automate Execution: Developers automate the execution of test cases using build automation tools like Jenkins, Travis CI, or GitLab CI/CD. These tools automatically run the test suite whenever changes are made to the codebase.
+<plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-checkstyle-plugin</artifactId>
+    <version>3.2.0</version>
+    <executions>
+        <execution>
+            <phase>verify</phase>
+            <goals>
+                <goal>check</goal>
+            </goals>
+        </execution>
+    </executions>
+</plugin>
 
-Monitor Test Results: Developers monitor test results to identify failing tests, regressions, or performance issues. Failed tests should be investigated and fixed promptly to maintain code quality.
-
-By integrating Test-First Development, Refactoring, and Automatic Test Case Writing into their development workflow, teams can improve code quality, accelerate development cycles, and deliver more reliable software products.
-
-
-
-To apply Extreme Programming (XP) practices of Test-First Development (TDD), Refactoring, and Automated Testing to your example, here's a detailed approach:
-
-1. Test-First Development (TDD)
-Concept:
-
-Red-Green-Refactor Cycle:
-Red: Write tests for methods before the actual implementation.
-Green: Implement the methods to make the tests pass.
-Refactor: Clean up the code while ensuring tests remain green.
-In Your Example:
-
-You’ve already implemented tests for the add and mul methods. Since the methods are simple and already correct, you would start with writing tests for new functionalities or edge cases.
-Next Steps:
-
-If you were to add a new method, such as subtract, you’d first write a test case for it before implementing the method.
-2. Refactoring
-Concept:
-
-Improve the structure of your code without changing its functionality.
-In Your Example:
-
-Your Calculator class is simple and doesn’t require immediate refactoring. However, if the class grew in complexity, you might need to refactor for better readability or efficiency.
-Potential Refactor:
-
-For a more complex Calculator, consider separating operations into different classes or using an interface. For instance, adding more complex operations might prompt restructuring.
-3. Automated Test Case Writing
-Concept:
-
-Automated test cases verify code functionality and run automatically to ensure changes don’t break existing features.
-In Your Example:
-
-Your test cases are automated using JUnit. They will automatically check if the add and mul methods work as expected.
-Enhancements:
-
-Edge Cases: Add tests for edge cases like large numbers, negative numbers, and zero
+Stages:
+Clean: clean
+Compile: compile
+Test: test
+Static Analysis: verify
+Package: package
+Deploy: cargo:run
